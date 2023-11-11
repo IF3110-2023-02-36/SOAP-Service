@@ -17,6 +17,7 @@ services:
     env_file: .env
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./migration/migration.sql:/docker-entrypoint-initdb.d/migration.sql
 
   phpmyadmin:
     image: phpmyadmin:latest
