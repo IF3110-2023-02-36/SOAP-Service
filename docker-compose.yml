@@ -6,10 +6,7 @@ services:
       - 6001:6001
     env_file: .env
     build: 
-      context: .
       dockerfile: Dockerfile
-    volumes:
-      - '.:/soap'
     depends_on:
       - mysql
 
