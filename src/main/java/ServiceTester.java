@@ -7,7 +7,7 @@ import ws.TestWS;
 
 public class ServiceTester {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("http://localhost:7779/ws/hello?wsdl");
+        URL url = new URL("http://localhost:6001/ws/hello?wsdl");
    
         QName qname = new QName("http://ws/", "TestWSImplService");
         Service service = Service.create(url, qname);

@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  soap-service:
+    image: if3110-2023-02-36-soap-service:latest
+    ports:
+      - 6001:6001
+    env_file: .env
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/soap'
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - 6307:3306
+    env_file: .env
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=mysql
+    ports:
+      - 6061:80
+    depends_on:
+      - mysql
