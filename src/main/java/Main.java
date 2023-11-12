@@ -8,6 +8,6 @@ public class Main {
         Endpoint.publish("http://0.0.0.0:6001/ws/hello", new ws.TestWSImpl());
         System.out.println("Service berhasil di publish");
         repository repo = new repository();
-        System.out.println(repo.getConnection());
+        // System.out.println(repo.getConnection());
     }
 }
