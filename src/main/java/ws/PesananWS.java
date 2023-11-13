@@ -15,4 +15,5 @@ public interface PesananWS {
     @WebMethod public List<pesananModel> getPesananByKurir(int id_kurir);
     @WebMethod public List<pesananModel> getPesananNoKurir();
     @WebMethod public String addPesanan(String alamat, String nama_penerima, String keterangan);
+    @WebMethod public String ambilPesanan(int id_pesanan, int id_kurir);
 }

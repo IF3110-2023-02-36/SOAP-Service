@@ -112,4 +112,56 @@ public class pesananRepo extends repository{
             return result;
         }
     }
+
+    public boolean validateAmbilPesanan(int id_pesanan) throws SQLException{
+        String query = "SELECT id_kurir FROM pesanan WHERE id = ?";
+        
+        try{
+            PreparedStatement validate = this.conn.prepareStatement(query);
+            validate.setString(1, Integer.toString(id_pesanan));
+            ResultSet resultSet = validate.executeQuery();
+
+            if (resultSet.next()) {
+                int id_kurir = resultSet.getInt("id_kurir");
+                System.out.println(id_kurir);
+                return (id_kurir == 0);
+            } else {
+                System.out.println("No rows found for id_pesanan: " + id_pesanan);
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public String ambilPesanan(int id_pesanan, int id_kurir) throws SQLException{
+        try{
+            Boolean pickable = this.validateAmbilPesanan(id_pesanan);
+            System.out.println(pickable);
+            if(!pickable){
+                return "Tidak bisa mengambil pesanan ini";
+            }
+        }catch(Exception e){
+            return "Tidak bisa mengambil pesanan ini";
+        }
+
+        String query = "UPDATE pesanan SET id_kurir = ?, status = ? WHERE pesanan.id = ?;";
+
+        try{
+            PreparedStatement ambilPesanan = this.conn.prepareStatement(query);
+            ambilPesanan.setString(1, Integer.toString(id_kurir));
+            ambilPesanan.setString(2, "pickup");
+            ambilPesanan.setString(3, Integer.toString(id_pesanan));
+
+            ambilPesanan.executeUpdate();
+            ambilPesanan.close();
+
+            String result = "succes mengambil pesanan";
+            return result;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+    }
 }

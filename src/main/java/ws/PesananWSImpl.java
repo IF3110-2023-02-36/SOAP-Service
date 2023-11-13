@@ -56,4 +56,15 @@ public class PesananWSImpl implements PesananWS{
             return "Gagal menambahkan pesanan";
         }
     }
+    @WebMethod 
+    public String ambilPesanan(int id_pesanan, int id_kurir){
+        try{
+            pesananRepo pr = new pesananRepo();
+            String result = pr.ambilPesanan(id_pesanan, id_kurir);
+            return result;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "Gagal mengambil pesanan";
+        }
+    }
 }
