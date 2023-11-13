@@ -164,4 +164,57 @@ public class pesananRepo extends repository{
             return "error";
         }
     }
+
+
+    public Boolean validateUpdatePesanan(int id_pesanan, int id_kurir){
+        String query = "SELECT id_kurir FROM pesanan WHERE id = ?";
+        
+        try{
+            PreparedStatement validate = this.conn.prepareStatement(query);
+            validate.setString(1, Integer.toString(id_pesanan));
+            ResultSet resultSet = validate.executeQuery();
+
+            if (resultSet.next()) {
+                int kurir = resultSet.getInt("id_kurir");
+                System.out.println(kurir);
+                return (id_kurir == kurir);
+            } else {
+                System.out.println("No rows found for id_pesanan: " + id_pesanan);
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public String updatePesanan(int id_pesanan, int id_kurir, String status, String keterangan){
+        String query = "UPDATE pesanan SET status = ?, keterangan = ? WHERE pesanan.id = ?;";
+
+        try{
+            Boolean pickable = this.validateUpdatePesanan(id_pesanan, id_kurir);
+            System.out.println(pickable);
+            if(!pickable){
+                return "Tidak bisa mengubah pesanan ini";
+            }
+        }catch(Exception e){
+            return "Tidak bisa mengubah pesanan ini";
+        }
+
+        try{
+            PreparedStatement updatePesanan = this.conn.prepareStatement(query);
+            updatePesanan.setString(1, status);
+            updatePesanan.setString(2, keterangan);
+            updatePesanan.setString(3, Integer.toString(id_pesanan));
+
+            updatePesanan.executeUpdate();
+            updatePesanan.close();
+
+            String result = "succes mengedit pesanan";
+            return result;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+    }
 }
