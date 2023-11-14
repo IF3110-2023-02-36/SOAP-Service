@@ -2,6 +2,7 @@ package ws;
 
 import java.util.List;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -9,6 +10,7 @@ import models.detailPesananModel;
 import repo.detailPesananRepo;
 
 @WebService(endpointInterface = "ws.detailPesananWS")
+@HandlerChain(file = "/middleware/middleware.xml")
 public class detailPesananWSImpl implements detailPesananWS{
     @WebMethod
     public List<detailPesananModel> getDetailPesanan(int id_pesanan){

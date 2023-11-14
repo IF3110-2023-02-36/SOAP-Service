@@ -22,4 +22,19 @@ CREATE TABLE detail_pesanan (
     FOREIGN KEY (id_pesanan) REFERENCES pesanan(id)
 );
 
+CREATE TABLE logging (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip VARCHAR(255),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    endpoint VARCHAR(255),
+    method_accessed VARCHAR(255),
+    caller VARCHAR(255)
+);
+
+CREATE TABLE api_key (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    api_key VARCHAR(255) UNIQUE,
+    client VARCHAR(255) UNIQUE
+);
+
 

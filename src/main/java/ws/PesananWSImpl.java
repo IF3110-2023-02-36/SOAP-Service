@@ -3,6 +3,7 @@ package ws;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -10,6 +11,7 @@ import models.pesananModel;
 import repo.pesananRepo;
 
 @WebService(endpointInterface = "ws.PesananWS")
+@HandlerChain(file = "/middleware/middleware.xml")
 public class PesananWSImpl implements PesananWS{
     @WebMethod
     public List<pesananModel> getPesananByKurir(int id_kurir){
