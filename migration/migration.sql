@@ -10,7 +10,9 @@ CREATE TABLE pesanan (
     alamat VARCHAR(255),
     nama_penerima VARCHAR(255),
     status ENUM('searching_courier', 'pickup', 'transit', 'delivered'),
-    keterangan TEXT
+    keterangan TEXT,
+    harga INT,
+    biaya_pengiriman INT
 );
 
 

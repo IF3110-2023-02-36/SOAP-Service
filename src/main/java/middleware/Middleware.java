@@ -102,7 +102,9 @@ public class Middleware implements SOAPHandler<SOAPMessageContext>{
         method += "(";
         for(int i=0; i<args.size(); i++) {
             method += args.get(i);
-            method += ", ";
+            if(i<args.size()-1){
+                method += ", ";
+            }   
         }
         method += ")";
 

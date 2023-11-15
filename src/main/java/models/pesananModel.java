@@ -18,4 +18,6 @@ public class pesananModel {
     private String nama_penerima;
     private String status;
     private String keterangan;
+    private int harga;
+    private int biaya_pengiriman;
 }

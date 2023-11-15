@@ -28,7 +28,7 @@ public class detailPesananRepo extends repository{
             ResultSet resultSet = getDetailPesanan.executeQuery();
 
             if (!resultSet.isBeforeFirst()){
-                return null;
+                return listDetailPesanan;
             }
 
             while(resultSet.next()){
