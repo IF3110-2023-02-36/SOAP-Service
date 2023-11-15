@@ -51,11 +51,11 @@ public class PesananWSImpl implements PesananWS{
     }
 
     @WebMethod
-    public String addPesanan(String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman, String nama_product, String quantity){
+    public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman, String nama_product, String quantity){
         detailPesananModel dp = new detailPesananModel();
         try{
             pesananRepo pr = new pesananRepo();
-            String result = pr.addPesanan(alamat, nama_penerima, keterangan, harga, biaya_pengiriman);
+            String result = pr.addPesanan(idPemesan, alamat, nama_penerima, keterangan, harga, biaya_pengiriman);
 
             System.out.println(result);
             int lastId = pr.getLastId();

@@ -32,6 +32,7 @@ public class pesananRepo extends repository{
 
             while(resultSet.next()){
                 int idKurir = resultSet.getInt("id_kurir");
+                int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
                 String namaPenerima = resultSet.getString("nama_penerima");
                 String status = resultSet.getString("status");
@@ -40,7 +41,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(idKurir, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -84,6 +85,7 @@ public class pesananRepo extends repository{
 
             while(resultSet.next()){
                 int idKurir = resultSet.getInt("id_kurir");
+                int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
                 String namaPenerima = resultSet.getString("nama_penerima");
                 String status = resultSet.getString("status");
@@ -92,7 +94,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(idKurir, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -104,17 +106,18 @@ public class pesananRepo extends repository{
         return null;
     }
 
-    public String addPesanan(String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman) throws SQLException{
-        String query = "INSERT INTO pesanan (alamat, nama_penerima, status, keterangan, harga, biaya_pengiriman) VALUES (?, ?, ?, ?, ?, ?);";
+    public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman) throws SQLException{
+        String query = "INSERT INTO pesanan (id_pemesan, alamat, nama_penerima, status, keterangan, harga, biaya_pengiriman) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try{
             PreparedStatement addPesanan = this.conn.prepareStatement(query);
-            addPesanan.setString(1, alamat);
-            addPesanan.setString(2, nama_penerima);
-            addPesanan.setString(3, "searching_courier");
-            addPesanan.setString(4, keterangan);
-            addPesanan.setString(5, Integer.toString(harga));
-            addPesanan.setString(6, Integer.toString(biaya_pengiriman));
+            addPesanan.setString(1, Integer.toString(idPemesan));
+            addPesanan.setString(2, alamat);
+            addPesanan.setString(3, nama_penerima);
+            addPesanan.setString(4, "searching_courier");
+            addPesanan.setString(5, keterangan);
+            addPesanan.setString(6, Integer.toString(harga));
+            addPesanan.setString(7, Integer.toString(biaya_pengiriman));
             addPesanan.execute();
             addPesanan.close();
             String result = "succes menambah pesanan";

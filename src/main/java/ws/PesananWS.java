@@ -14,7 +14,7 @@ import models.pesananModel;
 public interface PesananWS {
     @WebMethod public List<pesananModel> getPesananByKurir(int id_kurir);
     @WebMethod public List<pesananModel> getPesananNoKurir();
-    @WebMethod public String addPesanan(String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman, String nama_product, String quantity);
+    @WebMethod public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman, String nama_product, String quantity);
     @WebMethod public String ambilPesanan(int id_pesanan, int id_kurir);
     @WebMethod public String updatePesanan(int id_pesanan, int id_kurir, String status, String keterangan);
 }

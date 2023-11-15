@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @XmlRootElement
 public class pesananModel {
     private int id_kurir;
+    private int id_pemesan;
     private String alamat;
     private String nama_penerima;
     private String status;
