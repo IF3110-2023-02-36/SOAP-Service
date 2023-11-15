@@ -1,13 +1,16 @@
 package ws;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import models.detailPesananModel;
 import models.pesananModel;
+import repo.detailPesananRepo;
 import repo.pesananRepo;
 
 @WebService(endpointInterface = "ws.PesananWS")
@@ -48,10 +51,19 @@ public class PesananWSImpl implements PesananWS{
     }
 
     @WebMethod
-    public String addPesanan(String alamat, String nama_penerima, String keterangan){
+    public String addPesanan(String alamat, String nama_penerima, String keterangan, String nama_product, String quantity){
+        detailPesananModel dp = new detailPesananModel();
         try{
             pesananRepo pr = new pesananRepo();
             String result = pr.addPesanan(alamat, nama_penerima, keterangan);
+
+            int lastId = pr.getLastId();
+            if(lastId == -1){
+                return "Gagal";
+            }
+            ArrayList<detailPesananModel> detailPesanan = dp.convertFromString(lastId, nama_product, quantity);
+            detailPesananRepo dpr = new detailPesananRepo();
+            result = dpr.addDetailPesanan(detailPesanan);
             return result;
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -82,4 +94,6 @@ public class PesananWSImpl implements PesananWS{
             return "Gagal mengedit pesanan";
         }
     }
+    
+    
 }

@@ -1,5 +1,6 @@
 package ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -13,4 +14,8 @@ import models.detailPesananModel;
 @SOAPBinding(style = Style.DOCUMENT)
 public interface detailPesananWS {
     @WebMethod public List<detailPesananModel> getDetailPesanan(int id_pesanan);
+
+    // @WebMethod public String addDetailPesanan (String id_pesanan, String nama_product, String quantity);
 }
+
+

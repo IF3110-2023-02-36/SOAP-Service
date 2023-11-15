@@ -55,6 +55,23 @@ public class pesananRepo extends repository{
         return null;
     }
 
+
+    public int getLastId(){
+        String query = "SELECT id from pesanan order by id DESC limit 1;";
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }else{
+                return -1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     public List<pesananModel> getPesananNoKurir() throws SQLException{
         String query = "SELECT * FROM pesanan WHERE id_kurir = ?";
         ArrayList<pesananModel> listPesanan = new ArrayList<>();
