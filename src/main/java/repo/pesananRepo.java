@@ -28,6 +28,7 @@ public class pesananRepo extends repository{
             if (rs.next()) {
                 int id = rs.getInt("id");
                 int idKurir = rs.getInt("id_kurir");
+                String namaKurir = rs.getString("nama_kurir");
                 int idPemesan = rs.getInt("id_pemesan");
                 String alamat = rs.getString("alamat");
                 String namaPenerima = rs.getString("nama_penerima");
@@ -37,13 +38,12 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = rs.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, namaKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
 
                 return pesanan;
             }
             return null;
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println(e.getMessage());
             return null;
         }
@@ -65,6 +65,7 @@ public class pesananRepo extends repository{
             while(resultSet.next()){
                 int id = resultSet.getInt("id");
                 int idKurir = resultSet.getInt("id_kurir");
+                String namaKurir = resultSet.getString("nama_kurir");
                 int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
                 String namaPenerima = resultSet.getString("nama_penerima");
@@ -74,7 +75,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, namaKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -119,6 +120,7 @@ public class pesananRepo extends repository{
             while(resultSet.next()){
                 int id = resultSet.getInt("id");
                 int idKurir = resultSet.getInt("id_kurir");
+                String namaKurir = resultSet.getString("nama_kurir");
                 int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
                 String namaPenerima = resultSet.getString("nama_penerima");
@@ -128,7 +130,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, namaKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -185,7 +187,7 @@ public class pesananRepo extends repository{
         }
     }
 
-    public String ambilPesanan(int id_pesanan, int id_kurir) throws SQLException{
+    public String ambilPesanan(int id_pesanan, int id_kurir, String nama_kurir) throws SQLException{
         try{
             Boolean pickable = this.validateAmbilPesanan(id_pesanan);
             System.out.println(pickable);
@@ -196,14 +198,15 @@ public class pesananRepo extends repository{
             return "Tidak bisa mengambil pesanan ini";
         }
 
-        String query = "UPDATE pesanan SET id_kurir = ?, status = ?, keterangan = ? WHERE pesanan.id = ?;";
+        String query = "UPDATE pesanan SET id_kurir = ?, status = ?, keterangan = ?, nama_kurir = ? WHERE pesanan.id = ?;";
 
         try{
             PreparedStatement ambilPesanan = this.conn.prepareStatement(query);
             ambilPesanan.setString(1, Integer.toString(id_kurir));
             ambilPesanan.setString(2, "pickup");
             ambilPesanan.setString(3, "udah dapet kurir gasn, ditunggu yak!");
-            ambilPesanan.setString(4, Integer.toString(id_pesanan));
+            ambilPesanan.setString(4, nama_kurir);
+            ambilPesanan.setString(5, Integer.toString(id_pesanan));
             
 
             ambilPesanan.executeUpdate();
@@ -286,6 +289,7 @@ public class pesananRepo extends repository{
             while(resultSet.next()){
                 int id = resultSet.getInt("id");
                 int idKurir = resultSet.getInt("id_kurir");
+                String namaKurir = resultSet.getString("nama_kurir");
                 int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
                 String namaPenerima = resultSet.getString("nama_penerima");
@@ -295,7 +299,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, namaKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);

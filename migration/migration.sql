@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS detail_pesanan;
 CREATE TABLE pesanan (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_kurir INT DEFAULT 0,
+    nama_kurir VARCHAR(255),
     id_pemesan INT,
     alamat VARCHAR(255),
     nama_penerima VARCHAR(255),

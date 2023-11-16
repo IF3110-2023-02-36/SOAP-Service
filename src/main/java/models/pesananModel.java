@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class pesananModel {
     private int id;
     private int id_kurir;
+    private String nama_kurir;
     private int id_pemesan;
     private String alamat;
     private String nama_penerima;

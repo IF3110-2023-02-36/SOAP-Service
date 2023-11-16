@@ -77,10 +77,10 @@ public class PesananWSImpl implements PesananWS{
     }
 
     @WebMethod 
-    public String ambilPesanan(int id_pesanan, int id_kurir){
+    public String ambilPesanan(int id_pesanan, int id_kurir, String nama_kurir){
         try{
             pesananRepo pr = new pesananRepo();
-            String result = pr.ambilPesanan(id_pesanan, id_kurir);
+            String result = pr.ambilPesanan(id_pesanan, id_kurir, nama_kurir);
             return result;
         }catch(Exception e){
             System.out.println(e.getMessage());
