@@ -42,4 +42,5 @@ CREATE TABLE api_key (
     client VARCHAR(255) UNIQUE
 );
 
+INSERT INTO api_key (api_key, client) VALUES ("i9YKgYehGK3pqL2V9u/Zp6d6EmimY8cuJst0b2ae3Us=", "PHP"), ("mZHA8N63GOH88EnQW3hJ6zcJQhzY79WnuM+UnVG/e1k=","REST");
 
