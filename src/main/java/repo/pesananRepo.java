@@ -31,6 +31,7 @@ public class pesananRepo extends repository{
             }
 
             while(resultSet.next()){
+                int id = resultSet.getInt("id");
                 int idKurir = resultSet.getInt("id_kurir");
                 int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
@@ -41,7 +42,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -84,6 +85,7 @@ public class pesananRepo extends repository{
             }
 
             while(resultSet.next()){
+                int id = resultSet.getInt("id");
                 int idKurir = resultSet.getInt("id_kurir");
                 int idPemesan = resultSet.getInt("id_pemesan");
                 String alamat = resultSet.getString("alamat");
@@ -94,7 +96,7 @@ public class pesananRepo extends repository{
                 int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
 
 
-                pesananModel pesanan = new pesananModel(idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
             // System.out.println(listPesanan);
@@ -234,5 +236,42 @@ public class pesananRepo extends repository{
             System.out.println(e.getMessage());
             return "error";
         }
+    }
+
+    public ArrayList<pesananModel> getPesananByIdUser(int userId){
+        String query = "SELECT * FROM pesanan WHERE id_pemesan = ?";
+        ArrayList<pesananModel> listPesanan = new ArrayList<>();
+
+        try {
+            PreparedStatement getPesananByKurir = this.conn.prepareStatement(query);
+            getPesananByKurir.setString(1, Integer.toString(userId));
+            ResultSet resultSet = getPesananByKurir.executeQuery();
+
+            if (!resultSet.isBeforeFirst()){
+                return listPesanan;
+            }
+
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                int idKurir = resultSet.getInt("id_kurir");
+                int idPemesan = resultSet.getInt("id_pemesan");
+                String alamat = resultSet.getString("alamat");
+                String namaPenerima = resultSet.getString("nama_penerima");
+                String status = resultSet.getString("status");
+                String keterangan = resultSet.getString("keterangan");
+                int harga = resultSet.getInt("harga");
+                int biaya_pengiriman = resultSet.getInt("biaya_pengiriman");
+
+
+                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+                listPesanan.add(pesanan);
+            }
+            // System.out.println(listPesanan);
+            return listPesanan;
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

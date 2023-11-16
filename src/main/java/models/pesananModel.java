@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 @XmlRootElement
 public class pesananModel {
+    private int id;
     private int id_kurir;
     private int id_pemesan;
     private String alamat;

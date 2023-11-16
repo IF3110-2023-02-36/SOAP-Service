@@ -100,5 +100,14 @@ public class PesananWSImpl implements PesananWS{
         }
     }
     
-    
+    @WebMethod public ArrayList<pesananModel> getPesananByIdUser(int userId){
+        try {
+            pesananRepo pr = new pesananRepo();
+            ArrayList<pesananModel> result = pr.getPesananByIdUser(userId);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -17,4 +18,5 @@ public interface PesananWS {
     @WebMethod public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, String harga, int biaya_pengiriman, String nama_product, String quantity);
     @WebMethod public String ambilPesanan(int id_pesanan, int id_kurir);
     @WebMethod public String updatePesanan(int id_pesanan, int id_kurir, String status, String keterangan);
+    @WebMethod public ArrayList<pesananModel> getPesananByIdUser(int userId);
 }
