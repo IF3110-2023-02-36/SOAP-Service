@@ -22,6 +22,7 @@ CREATE TABLE detail_pesanan (
     id_pesanan INT,
     nama_produk VARCHAR(255),
     quantity INT,
+    harga INT,
     FOREIGN KEY (id_pesanan) REFERENCES pesanan(id)
 );
 
