@@ -17,8 +17,40 @@ public class pesananRepo extends repository{
         this.conn = this.getDatabase().getConnection();
     }
 
+    public pesananModel getPesananByIdPesanan(int id_pesanan) throws SQLException{
+        String query = "SELECT * FROM pesanan WHERE id = ?;";
+        
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(query);
+            stmt.setString(1, Integer.toString(id_pesanan));
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                int idKurir = rs.getInt("id_kurir");
+                int idPemesan = rs.getInt("id_pemesan");
+                String alamat = rs.getString("alamat");
+                String namaPenerima = rs.getString("nama_penerima");
+                String status = rs.getString("status");
+                String keterangan = rs.getString("keterangan");
+                int harga = rs.getInt("harga");
+                int biaya_pengiriman = rs.getInt("biaya_pengiriman");
+
+
+                pesananModel pesanan = new pesananModel(id, idKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
+
+                return pesanan;
+            }
+            return null;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public List<pesananModel> getPesananByKurir(int id_kurir) throws SQLException{
-        String query = "SELECT * FROM pesanan WHERE id_kurir = ?";
+        String query = "SELECT * FROM pesanan WHERE id_kurir = ?;";
         ArrayList<pesananModel> listPesanan = new ArrayList<>();
 
         try {
@@ -72,7 +104,7 @@ public class pesananRepo extends repository{
     }
 
     public List<pesananModel> getPesananNoKurir() throws SQLException{
-        String query = "SELECT * FROM pesanan WHERE id_kurir = ?";
+        String query = "SELECT * FROM pesanan WHERE id_kurir = ?;";
         ArrayList<pesananModel> listPesanan = new ArrayList<>();
 
         try {

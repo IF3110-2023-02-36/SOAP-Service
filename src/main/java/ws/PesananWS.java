@@ -14,6 +14,7 @@ import models.pesananModel;
 @SOAPBinding(style = Style.DOCUMENT)
 public interface PesananWS {
     @WebMethod public List<pesananModel> getPesananByKurir(int id_kurir);
+    @WebMethod public pesananModel getPesananByIdPesanan(int id_pesanan);
     @WebMethod public List<pesananModel> getPesananNoKurir();
     @WebMethod public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, String harga, int biaya_pengiriman, String nama_product, String quantity);
     @WebMethod public String ambilPesanan(int id_pesanan, int id_kurir);

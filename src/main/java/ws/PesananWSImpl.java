@@ -110,4 +110,16 @@ public class PesananWSImpl implements PesananWS{
             return null;
         }
     }
+
+    @WebMethod 
+    public pesananModel getPesananByIdPesanan(int id_pesanan){
+        try{
+            pesananRepo pr = new pesananRepo();
+            pesananModel model = pr.getPesananByIdPesanan(id_pesanan);
+            return model;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
