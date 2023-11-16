@@ -51,18 +51,22 @@ public class PesananWSImpl implements PesananWS{
     }
 
     @WebMethod
-    public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, int harga, int biaya_pengiriman, String nama_product, String quantity){
+    public String addPesanan(int idPemesan, String alamat, String nama_penerima, String keterangan, String harga, int biaya_pengiriman, String nama_product, String quantity){
         detailPesananModel dp = new detailPesananModel();
         try{
             pesananRepo pr = new pesananRepo();
-            String result = pr.addPesanan(idPemesan, alamat, nama_penerima, keterangan, harga, biaya_pengiriman);
+
+            int total_harga = dp.getTotalHarga(harga, quantity);
+
+            String result = pr.addPesanan(idPemesan, alamat, nama_penerima, keterangan, total_harga, biaya_pengiriman);
 
             System.out.println(result);
             int lastId = pr.getLastId();
             if(lastId == -1){
                 return "Gagal";
             }
-            ArrayList<detailPesananModel> detailPesanan = dp.convertFromString(lastId, nama_product, quantity);
+
+            ArrayList<detailPesananModel> detailPesanan = dp.convertFromString(lastId, nama_product, quantity, harga);
             detailPesananRepo dpr = new detailPesananRepo();
             result = dpr.addDetailPesanan(detailPesanan);
             return result;

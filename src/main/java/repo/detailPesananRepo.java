@@ -35,8 +35,9 @@ public class detailPesananRepo extends repository{
                 int idPesanan = resultSet.getInt("id_pesanan");
                 String namaProduk = resultSet.getString("nama_produk");
                 int quantity = resultSet.getInt("quantity");
+                int harga = resultSet.getInt("harga");
 
-                detailPesananModel detailPesanan = new detailPesananModel(idPesanan, namaProduk, quantity);
+                detailPesananModel detailPesanan = new detailPesananModel(idPesanan, namaProduk, quantity, harga);
                 listDetailPesanan.add(detailPesanan);
             }
             System.out.println(listDetailPesanan);
@@ -55,13 +56,13 @@ public class detailPesananRepo extends repository{
         //     detailPesanan.add(model);
         // }
 
-        String query = "INSERT INTO detail_pesanan(id_pesanan, nama_produk, quantity) VALUES";
+        String query = "INSERT INTO detail_pesanan(id_pesanan, nama_produk, quantity, harga) VALUES";
         for(int i = 0; i < detailPesanan.size(); i++){
             String temp;
             if(i == 0){
-                temp = "(?, ?, ?)";
+                temp = "(?, ?, ?, ?)";
             }else{
-                temp = ", (?, ?, ?)";
+                temp = ", (?, ?, ?, ?)";
             }
 
             query += temp;
@@ -78,6 +79,8 @@ public class detailPesananRepo extends repository{
                 addDetailPesanan.setString(paramIndex, detailPesanan.get(i).getNama_product());
                 paramIndex++;
                 addDetailPesanan.setString(paramIndex, Integer.toString(detailPesanan.get(i).getQuantity()));
+                paramIndex++;
+                addDetailPesanan.setString(paramIndex, Integer.toString(detailPesanan.get(i).getHarga()));
                 paramIndex++;
             }
 
