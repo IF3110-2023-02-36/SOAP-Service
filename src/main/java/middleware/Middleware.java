@@ -36,10 +36,11 @@ public class Middleware implements SOAPHandler<SOAPMessageContext>{
         }
 
         String apiKey = apiKeyHeader.get(0);
-        System.out.println(apiKey);
+        // System.out.println(apiKey);
 
         apiKeyRepo apiKeyRepo = new apiKeyRepo();
         String client = apiKeyRepo.getClientByApiKey(apiKey);
+        System.out.println("API Call from " + client);
         String endpoint = "http://0.0.0.0:6001/ws/";
         String method = null;
         String IP = null;

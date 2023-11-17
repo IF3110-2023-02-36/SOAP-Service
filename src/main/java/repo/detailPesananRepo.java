@@ -40,7 +40,6 @@ public class detailPesananRepo extends repository{
                 detailPesananModel detailPesanan = new detailPesananModel(idPesanan, namaProduk, quantity, harga);
                 listDetailPesanan.add(detailPesanan);
             }
-            System.out.println(listDetailPesanan);
             return listDetailPesanan;
 
         } catch (SQLException e){

@@ -19,13 +19,13 @@ public class PesananWSImpl implements PesananWS{
     @WebMethod
     public List<pesananModel> getPesananByKurir(int id_kurir){
         try{
-            System.out.println(id_kurir);
+            // System.out.println(id_kurir);
             pesananRepo pr = new pesananRepo();
             List<pesananModel> listpesanan = pr.getPesananByKurir(id_kurir);
-            System.out.println("list pesanan");
-            System.out.println(listpesanan);
+            // System.out.println("list pesanan");
+            // System.out.println(listpesanan);
             for(int i = 0; i<listpesanan.size(); i++){
-                System.out.println(listpesanan.get(i));
+                // System.out.println(listpesanan.get(i));
             }
             return listpesanan;
         }catch(SQLException e){
@@ -38,10 +38,10 @@ public class PesananWSImpl implements PesananWS{
         try{
             pesananRepo pr = new pesananRepo();
             List<pesananModel> listpesanan = pr.getPesananNoKurir();
-            System.out.println("list pesanan");
-            System.out.println(listpesanan);
+            // System.out.println("list pesanan");
+            // System.out.println(listpesanan);
             for(int i = 0; i<listpesanan.size(); i++){
-                System.out.println(listpesanan.get(i));
+                // System.out.println(listpesanan.get(i));
             }
             return listpesanan;
         }catch(SQLException e){
@@ -60,7 +60,7 @@ public class PesananWSImpl implements PesananWS{
 
             String result = pr.addPesanan(idPemesan, alamat, nama_penerima, keterangan, total_harga, biaya_pengiriman);
 
-            System.out.println(result);
+            // System.out.println(result);
             int lastId = pr.getLastId();
             if(lastId == -1){
                 return "Gagal";

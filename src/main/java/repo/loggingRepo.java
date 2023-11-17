@@ -31,6 +31,5 @@ public class loggingRepo extends repository {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println("add logging");
     }
 }
