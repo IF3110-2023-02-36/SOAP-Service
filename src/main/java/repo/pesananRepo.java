@@ -50,12 +50,14 @@ public class pesananRepo extends repository{
     }
 
     public List<pesananModel> getPesananByKurir(int id_kurir) throws SQLException{
-        String query = "SELECT * FROM pesanan WHERE id_kurir = ?;";
+        String query = "SELECT * FROM pesanan WHERE id_kurir = ? and status != ? ;";
         ArrayList<pesananModel> listPesanan = new ArrayList<>();
 
         try {
             PreparedStatement getPesananByKurir = this.conn.prepareStatement(query);
             getPesananByKurir.setString(1, Integer.toString(id_kurir));
+            getPesananByKurir.setString(2, "delivered");
+            
             ResultSet resultSet = getPesananByKurir.executeQuery();
 
             if (!resultSet.isBeforeFirst()){
@@ -111,6 +113,7 @@ public class pesananRepo extends repository{
         try {
             PreparedStatement getPesananByKurir = this.conn.prepareStatement(query);
             getPesananByKurir.setString(1, Integer.toString(0));
+            
             ResultSet resultSet = getPesananByKurir.executeQuery();
 
             if (!resultSet.isBeforeFirst()){
@@ -302,7 +305,6 @@ public class pesananRepo extends repository{
                 pesananModel pesanan = new pesananModel(id, idKurir, namaKurir, idPemesan, alamat, namaPenerima, status, keterangan, harga, biaya_pengiriman);
                 listPesanan.add(pesanan);
             }
-            // System.out.println(listPesanan);
             return listPesanan;
 
         } catch (SQLException e){

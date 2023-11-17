@@ -15,7 +15,6 @@ import models.detailPesananModel;
 public interface detailPesananWS {
     @WebMethod public List<detailPesananModel> getDetailPesanan(int id_pesanan);
 
-    // @WebMethod public String addDetailPesanan (String id_pesanan, String nama_product, String quantity);
 }
 
 

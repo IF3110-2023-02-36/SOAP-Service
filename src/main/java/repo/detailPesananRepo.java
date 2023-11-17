@@ -50,12 +50,6 @@ public class detailPesananRepo extends repository{
     }
 
     public String addDetailPesanan(ArrayList<detailPesananModel> detailPesanan){
-        // ArrayList<detailPesananModel> detailPesanan = new ArrayList<>();
-        // for(int i = 0; i< nama_produk.size(); i++){
-        //     detailPesananModel model = new detailPesananModel(id_pesanan.get(i), nama_produk.get(i), quantity.get(i));
-        //     detailPesanan.add(model);
-        // }
-
         String query = "INSERT INTO detail_pesanan(id_pesanan, nama_produk, quantity, harga) VALUES";
         for(int i = 0; i < detailPesanan.size(); i++){
             String temp;

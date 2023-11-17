@@ -126,16 +126,13 @@ public class Middleware implements SOAPHandler<SOAPMessageContext>{
     
 
     public Set<QName> getHeaders(){
-        //ini gimick doang karena harus ini implement interface
         return null;
     }
 
     public boolean handleFault(SOAPMessageContext ctx){
-        //ini gimick doang karena harus ini implement interface
         return false;
     }
 
     public void close(MessageContext ctx){
-        //ini gimick doang karena harus ini implement interface
     }
 }
