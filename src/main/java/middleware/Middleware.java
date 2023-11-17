@@ -36,7 +36,7 @@ public class Middleware implements SOAPHandler<SOAPMessageContext>{
         }
 
         String apiKey = apiKeyHeader.get(0);
-        System.out.println(apiKey);
+        // System.out.println(apiKey);
 
         apiKeyRepo apiKeyRepo = new apiKeyRepo();
         String client = apiKeyRepo.getClientByApiKey(apiKey);
@@ -120,6 +120,12 @@ public class Middleware implements SOAPHandler<SOAPMessageContext>{
             System.out.println(e.getMessage());
             return false;
         }
+
+        // console logging();
+        System.out.println("API Call from : " + client);
+        System.out.println("Accessed Endpoint : " + endpoint);
+        System.out.println("Accessed Method : " + method);
+        System.out.println();
 
         return true;
     }

@@ -178,10 +178,10 @@ public class pesananRepo extends repository{
 
             if (resultSet.next()) {
                 int id_kurir = resultSet.getInt("id_kurir");
-                System.out.println(id_kurir);
+                // System.out.println(id_kurir);
                 return (id_kurir == 0);
             } else {
-                System.out.println("No rows found for id_pesanan: " + id_pesanan);
+                // System.out.println("No rows found for id_pesanan: " + id_pesanan);
                 return false;
             }
         }catch(Exception e){
@@ -193,7 +193,7 @@ public class pesananRepo extends repository{
     public String ambilPesanan(int id_pesanan, int id_kurir, String nama_kurir) throws SQLException{
         try{
             Boolean pickable = this.validateAmbilPesanan(id_pesanan);
-            System.out.println(pickable);
+            // System.out.println(pickable);
             if(!pickable){
                 return "Tidak bisa mengambil pesanan ini";
             }
@@ -234,10 +234,10 @@ public class pesananRepo extends repository{
 
             if (resultSet.next()) {
                 int kurir = resultSet.getInt("id_kurir");
-                System.out.println(kurir);
+                // System.out.println(kurir);
                 return (id_kurir == kurir);
             } else {
-                System.out.println("No rows found for id_pesanan: " + id_pesanan);
+                // System.out.println("No rows found for id_pesanan: " + id_pesanan);
                 return false;
             }
         }catch(Exception e){
@@ -251,7 +251,7 @@ public class pesananRepo extends repository{
 
         try{
             Boolean pickable = this.validateUpdatePesanan(id_pesanan, id_kurir);
-            System.out.println(pickable);
+            // System.out.println(pickable);
             if(!pickable){
                 return "Tidak bisa mengubah pesanan ini";
             }
